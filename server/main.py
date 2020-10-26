@@ -16,8 +16,7 @@ def sentiment(text):
 
 	sid = SentimentIntensityAnalyzer()
 	com = 0
-	sents = nltk.sent_tokenize(text)# seperates  each sentences
-			# sentiment anaysis
+	sents = nltk.sent_tokenize(text)
 	for sentence in sents:
 		ss = sid.polarity_scores(sentence)
 		com = com + ss['compound']
@@ -36,23 +35,25 @@ def sentiment(text):
 
 
 	if(rounded<=0.8 and rounded>0.6):
-		emotion='happy'
+		emotion='very happy'
 	elif(rounded<=1.0 and rounded>0.8):
-		emotion='enthusiastic'
+		emotion='very enthusiastic'
 	elif(rounded<=0.6 and rounded>0.4):
-		emotion='surprise'
+		emotion='surprised'
 	elif(rounded<=0.4 and rounded>0.2):
-		emotion='enjoyment'
+		emotion='enjoyments'
 	elif(rounded<=0.2 and rounded>0.0):
-		emotion='anticipation'
+		emotion='anticipations'
 	elif(rounded<=0.0 and rounded>-0.4):
-		emotion='fear'
+		emotion='feard'
 	elif(rounded<=-0.4 and rounded>-0.6):
-		emotion='sad'
+		emotion='sadness'
 	elif(rounded<=-0.6 and rounded>-1.0):
 		emotion='anger'
-	else:
+	elif(rounded==0):
 		emotion='happy'
+	else:
+		emotion='not defined'
 		
 
 	return rounded, emotion
